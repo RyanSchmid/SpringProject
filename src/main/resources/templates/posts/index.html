@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('List of Posts')">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<description>
+<div th:replace="fragments/navbar :: myNav"></div>
+<h1>List of posts</h1>
+<div class="row">
+    <div class="col-xs-4" th:each="post : ${posts}">
+        <h2 th:text="${post.title}"></h2>
+        <p th:text="${post.body}"></p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</description>
+</html>
