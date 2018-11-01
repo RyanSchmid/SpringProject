@@ -1,10 +1,20 @@
 package com.codeup.project;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="posts")
 public class Post {
 
-    private String title;
-    private String body;
+    @Id
+    @GeneratedValue
     private long id;
+
+    @Column(nullable=false, length = 100)
+    private String title;
+
+    @Column(nullable=false)
+    private String body;
 
     public Post(){}
 
@@ -18,8 +28,7 @@ public class Post {
         this.title = title;
         this.body = body;
     }
-
-
+    
     public String getTitle() {
         return title;
     }

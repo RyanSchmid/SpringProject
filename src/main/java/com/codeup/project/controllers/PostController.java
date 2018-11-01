@@ -25,13 +25,13 @@ public class PostController {
 
     @GetMapping("/")
     private String sayHello(Model vModel) {
-        vModel.addAttribute("posts", postSvc.findAll());
+        vModel.addAttribute("posts", postSvc.all());
         return "posts/index";
     }
 
     @GetMapping("/posts")
     public String postsIndex(Model vModel) {
-        vModel.addAttribute("posts", postSvc.findAll());
+        vModel.addAttribute("posts", postSvc.all());
         return "posts/index";
     }
 
@@ -55,7 +55,7 @@ public class PostController {
     //    POST	/ads/create	create a new post
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        Post savedPost = postSvc.save(post);
+        Post savedPost = postSvc.create(post);
         return "redirect:/posts/" + savedPost.getId();
     }
 

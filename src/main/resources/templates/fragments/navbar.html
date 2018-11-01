@@ -27,6 +27,13 @@
             </li>
         </ul>
     </div>
+    <div>
+        <form th:action="@{/posts/index}" th:method="get" th:object="${post}">
+            <input th:field="*{title}"/>
+            <input type="submit" />
+        </form>
+    </div>
+
 </nav>
 
 </body>

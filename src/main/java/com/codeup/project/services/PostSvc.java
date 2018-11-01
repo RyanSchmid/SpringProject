@@ -1,6 +1,7 @@
 package com.codeup.project.services;
 
 import com.codeup.project.Post;
+import com.codeup.project.PostsRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,35 +10,31 @@ import java.util.List;
 @Service
 public class PostSvc {
 
-    private List<Post> posts;
+    private PostsRepo postRepo;
 
-    public PostSvc(){
-        posts = new ArrayList<>();
-        createPosts();
+    public PostSvc(PostsRepo postRepo){
+        this.postRepo = postRepo;
     }
 
-    public List<Post> findAll(){
-        return posts;
+    public Iterable<Post> all(){
+        return postRepo.findAll();
     }
 
-    public Post save(Post post){
-        post.setId(posts.size() + 1);
-        posts.add(post);
-        return post;
+    public Post create(Post post){
+        return postRepo.save(post);
     }
 
     public Post update(Post post){
-        return posts.set((int) post.getId()-1, post);
+        return postRepo.save(post);
     }
 
     public Post findOne(long id){
-        return posts.get( (int) id - 1);
+        return postRepo.findOne(id);
     }
 
-    private void createPosts(){
-        this.save(new Post("My first post", "It's about my feelings"));
-        this.save(new Post("A good day", "Yay"));
-        this.save(new Post("A bad day", "Meh"));
+    public List<Post> search(String search){
+     return postRepo.findAllByTitleContainsOrBodyContains(search, search);
     }
+
 
 }
