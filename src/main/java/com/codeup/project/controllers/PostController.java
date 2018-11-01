@@ -72,9 +72,9 @@ public class PostController {
 
     //    POST	/posts/{id}/edit send form to edit post
     @PostMapping("/posts/{id}/edit")
-    public String editPost(@ModelAttribute Post post) {
-        Post savedPost = postSvc.update(post);
-        return "create a new post";
+    public String showPostUpdateForm(@ModelAttribute Post post) {
+        Post updatedPost = postSvc.update(post);
+        return "redirect:/posts/" +updatedPost.getId();
     }
 
 }

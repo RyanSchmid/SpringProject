@@ -27,7 +27,7 @@ public class PostSvc {
     }
 
     public Post update(Post post){
-        return posts.set((int) post.getId(), post);
+        return posts.set((int) post.getId()-1, post);
     }
 
     public Post findOne(long id){
