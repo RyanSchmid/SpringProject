@@ -10,11 +10,16 @@
         <input th:field="*{title}" />
         <br />
         Description:
-        <input th:field="*{body}" />
+        <textarea th:field="*{body}" />
         <br />
-        <input type="submit" />
+        <button class="btn" th:action="submit">Save edits</button>
+    </form>
+
+    <form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post" th:object="${post}">
+         <button class="btn btn-warning" th:action="submit">Delete Post</button>
     </form>
 
     <div th:replace="fragments/footer :: footer"></div>
+
 </description>
 </html>

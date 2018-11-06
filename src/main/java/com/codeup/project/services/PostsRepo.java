@@ -1,6 +1,6 @@
-package com.codeup.project;
+package com.codeup.project.services;
 
-import org.springframework.data.jpa.repository.Query;
+import com.codeup.project.models.Post;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
 

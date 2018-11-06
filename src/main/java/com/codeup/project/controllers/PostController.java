@@ -1,13 +1,11 @@
 package com.codeup.project.controllers;
 
-import com.codeup.project.Post;
+import com.codeup.project.models.Post;
+import com.codeup.project.models.User;
 import com.codeup.project.services.PostSvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PostController {
@@ -19,7 +17,8 @@ public class PostController {
     }
 
     @GetMapping("/index")
-    public String hello() {
+    public String hello(Model vModel) {
+        vModel.addAttribute("posts", postSvc.all());
         return "posts/index";
     }
 
@@ -77,4 +76,37 @@ public class PostController {
         return "redirect:/posts/" +updatedPost.getId();
     }
 
+    //    POST	/posts/{id}/delete to remove post
+    @PostMapping("/posts/{id}/delete")
+    public String removePost(@PathVariable int id, @ModelAttribute Post post) {
+        postSvc.delete(id);
+        return "redirect:/posts/";
+    }
+
+
+    //GET mapping for search results
+    @GetMapping("/ads/search/{term}")
+    public String showResults(@PathVariable String term, Model vModel){
+        vModel.addAttribute("ads", postSvc.search(term));
+        return "ads/index";
+    }
+
+    //GET mapping for search results
+    @GetMapping("/login")
+    public String login(Model vModel){
+        vModel.addAttribute("user", new User());
+        return "users/login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model vModel){
+        vModel.addAttribute("user", new User());
+        return "users/register";
+    }
+
+//    @PostMapping("/posts/{id}/edit")
+//    public String showPostUpdateForm(@ModelAttribute Post post) {
+//        Post updatedPost = postSvc.update(post);
+//        return "redirect:/posts/" +updatedPost.getId();
+//    }
 }

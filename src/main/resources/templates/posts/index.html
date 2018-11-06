@@ -10,6 +10,7 @@
     <div class="card" th:each="post : ${posts}">
         <h2 th:text="${post.title}"></h2>
         <p th:text="${post.body}"></p>
+        <!--<p th:text="${post.user.email}"></p>-->
         <a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>
         <br />
     </div>

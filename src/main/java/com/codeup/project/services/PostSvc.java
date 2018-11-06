@@ -1,10 +1,8 @@
 package com.codeup.project.services;
 
-import com.codeup.project.Post;
-import com.codeup.project.PostsRepo;
+import com.codeup.project.models.Post;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +29,8 @@ public class PostSvc {
     public Post findOne(long id){
         return postRepo.findOne(id);
     }
+
+    public void delete(long id) { postRepo.delete(findOne(id)); }
 
     public List<Post> search(String search){
      return postRepo.findAllByTitleContainsOrBodyContains(search, search);
